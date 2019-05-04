@@ -21,16 +21,18 @@ func Init(faces int) Dice {
 * It must return random number (with most entropia)
 * But we have the same value.
 */
-func (d Dice) Roll() int { //Is some Cache?
-	r := rand.New(rand.NewSource(time.Now().UnixNano())) //Mb need clear variable?
+func (d Dice) Roll() int { 
+	time.Sleep(1) //fix
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	return r.Intn(d.faces)+1
 }
 
 /*
 * And here also
 */
-func (d Dice) RollNTimes(throws int) []int { //Is some Cache?
+func (d Dice) RollNTimes(throws int) []int {
 	var result []int 
+	time.Sleep(1) //fix
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for i:= 0; i<throws; i++ {
 		result = append(result, r.Intn(d.faces)+1)
@@ -42,6 +44,7 @@ func (d Dice) RollNTimes(throws int) []int { //Is some Cache?
 * Another way
 */
 func (d Dice) hideRoll() int { 
+	time.Sleep(1) //fix
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	return r.Intn(d.faces)+1
 }
