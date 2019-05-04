@@ -1,5 +1,7 @@
 package stats
 
+import "dice/dice"//Есть ли более красивый способ указать тип параметра функции?
+
 type statistic struct {
 	sum []int
 	rep []int
@@ -9,18 +11,17 @@ type statistic struct {
 /**
 *Generates the final data array (type Statistic)
 **/
-func GetStatistic(firstArray, secondArray []int) statistic {
+func GetStatistic(diceObj dice.Dice, throws int) statistic {
 	stats := statistic {}
-	throws := len(firstArray) //No matter which array for now
-	sum := make([]int, 11)
-	rep := make([]int, 11)
-	persent := make([]int, 11)
+	sizeArray := diceObj.GetFaces()*2-1
+	firstArray, secondArray := diceObj.RollNTimes(throws)
+	sum, rep, persent := make([]int, sizeArray), make([]int, sizeArray), make([]int, sizeArray) //definitions array
 
 	for i:=0; i<throws; i++ {
 		rep[sumOfNumb(firstArray[i], secondArray[i])-2]++
 	}
 
-	for i:= 0; i<11; i++ {
+	for i:= 0; i<sizeArray; i++ {
 		sum[i] = i+2
 		persent[i] = probability(rep[i], throws)
 	}
