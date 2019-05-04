@@ -10,6 +10,10 @@ type Dice struct {
 	lastRandomNum int
 }
 
+func init() {
+	rand.Seed(time.Now().UnixNano())
+}
+
 /*
 * It returns 'obj' type dice. 
 */
@@ -22,9 +26,7 @@ func Init(faces int) Dice {
 * But we have the same value.
 */
 func (d Dice) Roll() int { 
-	time.Sleep(1) //fix
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	return r.Intn(d.faces)+1
+	return rand.Intn(d.faces)+1
 }
 
 /*
@@ -32,10 +34,8 @@ func (d Dice) Roll() int {
 */
 func (d Dice) RollNTimes(throws int) []int {
 	var result []int 
-	time.Sleep(1) //fix
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for i:= 0; i<throws; i++ {
-		result = append(result, r.Intn(d.faces)+1)
+		result = append(result, rand.Intn(d.faces)+1)
 	}
 	return result
 }
@@ -44,9 +44,7 @@ func (d Dice) RollNTimes(throws int) []int {
 * Another way
 */
 func (d Dice) hideRoll() int { 
-	time.Sleep(1) //fix
-	r := rand.New(rand.NewSource(time.Now().UnixNano()))
-	return r.Intn(d.faces)+1
+	return rand.Intn(d.faces)+1
 }
 
 /*Interface*/
