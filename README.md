@@ -1,2 +1,2 @@
 # go-training
-Learning golang
+Client for https://openweathermap.org api
