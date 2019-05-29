@@ -1,2 +1,2 @@
 # go-training
-Learning golang
+Practice task 5
